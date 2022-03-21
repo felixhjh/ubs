@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block nav_bar %}
+<div class="navbar">
+    <div class="header-name">
+        <h1> UBS </h1>
+    </div>
+    {{ wtf.quick_form(searchbarform, form_type="inline", button_map={'submit':'secondary'}, horizontal_columns=('lg',
+    20, 10),
+    extra_classes='header-search') }}
+    <div class="header-right">
+        <h1 class="navbarButs optionTab"> Welcome {{ session['FirstName'] }}</h1>
+    </div>
+</div>
+{% endblock %}
+
+{% block app_content %}
+
+{% if searchString %}
+
+<div class="alert alert-primary" role="alert">
+    <h4> {{searchString}} </h4>
+</div>
+{% endif %}
+<div class="feed_container customcontainer">
+{#    <h2 style="color: blanchedalmond;">Your Purchases</h2>#}
+    <div class="container">
+        {% for purchase in purchases %}
+        <div class="row" style="justify-content: center">
+            <div class="card mb-3 col-8">
+                <div class="row g-0">
+                    <div class="col-md-2" style="
+                    height: 125px;
+                    width: 125px;
+                    margin: 0;
+                    padding: 0;
+                ">
+                        <img src="../file/{{purchase['Image']}}" alt="..."
+                            style="object-fit: cover;
+                            height: 100% !important;
+                            width: 100% !important;">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body" style="
+                        margin: 0;
+                        padding-left: 3rem;
+                        height: 100%;
+                        width: 100%;"
+                    >
+                            <h2 class="card-title">{{purchase['itemName']}}</h2>
+                            <p class="card-text">{{purchase['itemCost']}}</p>
+                            <p class="card-text">
+                                <small class="text-muted">{{purchase['date']}}</small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
+</div>
+
+{% endblock %}

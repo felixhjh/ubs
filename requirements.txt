@@ -1,0 +1,8 @@
+Flask>=1.0.0
+Flask-WTF
+werkzeug==0.16.1  
+flask-uploads
+flask-bootstrap
+pymongo
+dnspython
+email_validator

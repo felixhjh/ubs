@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+<style>
+	.form-cont {
+		margin-top: 10rem;
+	}
+</style>
+
+{% block nav_bar %}
+<div class="navbar">
+	<div class="header-name">
+		<h1> UBS </h1>
+	</div>
+	<div class="header-right">
+		<h3 class="navbarButs optionTab"> {{ session['FirstName'] }}</h3>
+	</div>
+</div>
+{% endblock %}
+
+{% block app_content %}
+
+{% if msg %}
+<div class="alert alert-primary" role="alert">
+	<h4> {{msg}} </h4>
+</div>
+{% endif %}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-3"></div>
+		<div class="col-md-6 form-cont">
+			<br>
+			<div class="card-form-container">
+				<div class="card-wrapper">
+				</div>
+				<div class="card-details-container">
+					<form class='card-details-form'>
+						{{wtf.form_field(ccform.number)}}
+						
+							<div class="row">
+								<div class="col-6">
+									{{wtf.form_field(ccform.expiry)}}
+								</div>
+								<div class="col-6">
+									{{wtf.form_field(ccform.cvc)}}
+								</div>
+							</div>
+							{{wtf.form_field(ccform.streetAddress)}}
+							<div class="row">
+								<div class="col-2">
+									{{wtf.form_field(ccform.stateAbbr)}}
+								</div>
+								<div class="col-6">
+									{{wtf.form_field(ccform.billCity)}}
+								</div>
+								<div class="col-4">
+									{{wtf.form_field(ccform.zipCode)}}
+								</div>
+							</div>
+							<div class="d-grid gap-2">
+								{{wtf.form_field(ccform.submit, class="btn btn-primary ccDetails-submit-btn")}}
+							</div>
+							
+					</form>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3"></div>
+	</div>
+</div>
+
+<script>
+	$('.card-details-form').card({
+
+		container: '.card-wrapper', // *required*
+	});
+</script>
+
+{% endblock %}

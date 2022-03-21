@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block nav_bar %}
+    <div class="navbar">
+        <div class="login-left">
+          <h1 class="navbarButs optionTab" >UBS</h1>
+        </div>
+        <div class="header-search">
+
+        </div>
+        <div class="login-right">
+            <a href="/register">
+                <h1 class="navbarButs optionTab" >Sign Up</h1>
+            </a>
+        </div>
+    </div>
+{% endblock %}
+
+{% block side_bar %}
+{% endblock %}
+
+{% block app_content %}
+
+{% if msg %}
+    <div class="alert alert-primary" role="alert">
+        <h4 > {{msg}} </h4>
+    </div>
+{% endif %}
+
+<div style="height: 100vh;width: auto;">
+  <div  class="container" style="margin: 20% 30%;
+  height: 100%;
+  width: 100%;">
+    <h2 style="color: azure;font-size: x-large;">Login</h2>
+    <form action="/login" method="post" class="form" role="form">
+      {{ form.csrf_token }}
+        <div class="row">
+      <div style="color: azure; font-size:large;"
+        class="form-group col-md-6 col-sm-4">
+      {{ wtf.form_field(form.emailID, type='email', class='form-control', placeholder='Email Address') }}
+      </div>
+        </div>
+        <div class="row">
+      <div style="color: azure; font-size: large;" class="form-group col-md-6 col-sm-4">
+      {{ wtf.form_field(form.password, type='password', class='form-control', placeholder='Password') }}
+      </div>
+        </div>
+      <div class="form-group">
+      {{ wtf.form_field(form.submit, class='createSales-button') }}
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

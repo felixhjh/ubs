@@ -1,0 +1,620 @@
+.navbar {
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 3rem;
+    background-color: black;
+    width: 100%;
+    margin-bottom: 1px;
+    min-height: fit-content;
+
+}
+
+.header-name {
+    flex: .25;
+    color: azure;
+    margin-left: 2%;
+}
+
+.header-search {
+    flex: .60;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 2%;
+}
+
+.header-right {
+    flex: 0.15;
+    display: flex;
+    color: azure;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.login-left {
+    flex: .15;
+    color: azure;
+    margin-left: 2%;
+}
+
+.login-right {
+    flex: 0.15;
+    display: flex;
+    color: azure;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+
+#search {
+    margin-right: 10px;
+    width: 40vw;
+    border-radius: 15px;
+}
+
+#box {
+    width: 80%;
+    background-color: rgb(57, 20, 221);
+    color: rgb(236, 13, 13);
+}
+
+.optionTab {
+    text-decoration: none !important;
+    color: azure;
+}
+
+.activate {
+    text-decoration: none !important;
+    color: dimgray !important;;
+}
+
+#optionTab:hover {
+    text-transform: scaleX(1.08);
+    color: dimgray;
+}
+
+
+.feed {
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    place-content: center;
+    background-color: white;
+}
+/*.backgroundPic{*/
+/*    background-image: url('mystical.png');*/
+/*    background-size: 100% 100%;*/
+/*    width: 100%;*/
+/*    height: 100%;*/
+/*}*/
+
+.feed_container {
+
+  /* background-image: url("https://www.cnet.com/a/img/pecM5xCV-zw0mXTSlBwpAbYuPLw=/2018/06/07/78e06ce4-81e0-4b35-992f-6a2b3585b931/mojave-night.jpg"); */
+
+    /* display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background-color: rgb(73, 70, 70);
+    border-radius: 10px;
+    overflow-y: scroll;
+    height: 97vh; */
+}
+
+.feed_container::-webkit-scrollbar {
+    display:none;
+}
+
+
+.customcontainer::-webkit-scrollbar {
+    scrollbar-color: transparent ;
+
+}
+
+.customcontainer {
+    overflow-y: scroll;
+    height: 92vh;
+}
+
+.feed-post-card {
+    margin: 5px;
+}
+
+.navbarButs {
+    margin-right: 5px;
+}
+
+
+.step.finish {
+  background-color: #4CAF50;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+    height: 100vh;
+    
+  }
+  
+.sidenav {
+height: 100vh;
+position: relative;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: black;
+overflow-x: hidden;
+padding-top: 20px;
+}
+
+.sidenav a {
+padding: 6px 8px 6px 16px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
+}
+
+.sidenav a:hover {
+color: #f1f1f1;
+}
+
+
+@media screen and (max-height: 450px) {
+.sidenav {padding-top: 15px;}
+.sidenav a {font-size: 18px;}
+}
+
+/* Create Post */
+/*custom font*/
+@import url(https://fonts.googleapis.com/css?family=Montserrat);
+
+/*basic reset*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+
+    height: 100vh;
+    overflow: hidden;
+    background: -webkit-linear-gradient(to left, #6441A5, #2a0845); /* Chrome 10-25, Safari 5.1-6 */
+
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+    font-family: arial, verdana;
+    background: transparent;
+    height: 100vh;
+}
+
+#delBtnForm {
+    text-align: center;
+    position: relative;
+    margin-top: 0px;
+    left: -45%
+}
+
+#delBtnForm .action-button {
+    width: 100px;
+    background: #ee0979;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+/*form styles*/
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 30px;
+}
+
+#msform fieldset {
+    background-image: url("https://files.123freevectors.com/wp-content/original/114576-abstract-baby-blue-defocused-background.jpg"); 
+  /*background: rgb(241, 155, 155);*/
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    box-sizing: border-box;
+    width: 80%;
+    margin: 0 3%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+/*inputs*/
+#msform input, #msform textarea {
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #2C3E50;
+    font-size: 13px;
+}
+
+#msform input:focus, #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #ee0979;
+    outline-width: 0;
+    transition: All 0.5s ease-in;
+    -webkit-transition: All 0.5s ease-in;
+    -moz-transition: All 0.5s ease-in;
+    -o-transition: All 0.5s ease-in;
+}
+
+/*buttons*/
+.createSales-button {
+    background: #e2c7d4;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 5px 5px;
+    margin: 10px 5px;
+    width: 100px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.sales-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: none;
+}
+
+#msform .action-button {
+    width: 100px;
+    background: #ee0979;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;
+}
+
+#msform .action-button-previous {
+    width: 100px;
+    background: #C5C5F1;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #C5C5F1;
+}
+
+#delbtn .action-button{
+    width: 100px;
+    background: #ee0979;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#delbtn .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #ee0979;
+}
+
+/*image resize responsive*/
+.card-img-top {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+}
+
+/*headings*/
+.fs-title {
+    font-size: 18px;
+    text-transform: uppercase;
+    background-color: transparent;
+    color: black;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: rgb(138, 136, 136);
+    margin-bottom: 20px;
+}
+
+/* sales card */
+.salesCard {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  height:100%;
+  width:100%;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+
+.price {
+  color: grey;
+  font-size: 22px;
+}
+
+.salesCard-button {
+  border: none;
+  outline: 0;
+  padding: 12px;
+  color: white;
+  background-color: #000;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 18px;
+}
+
+.salesCard-button:hover {
+  opacity: 0.7;
+}
+.createSales-button {
+    background: #ee0979;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 5px 5px;
+    margin: 10px 5px;
+    width: 100px;
+    font-size: 15px;
+    text-align: center;
+}
+
+.sales-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  border: none;
+}
+.clubs-card{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width:100%;
+  margin-bottom: 50px;
+  margin-top:10px;
+  text-align: center;
+  font-family: arial;
+}
+
+.card-body{
+  /* background-image: url("https://image.freepik.com/free-vector/blue-violet-watercolor-abstract-texture-background_259910-8.jpg"); */
+  background-color: whitesmoke;
+  font-family: arial;
+  font-size: large;
+}
+
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: transparent;
+  /* background-clip: border-box; */
+  border: none;
+  /* border-radius: 1rem; */
+}
+/*card */
+
+/*new card css for home*/
+.f-card {
+  background-color:white;
+  /*height:400px;*/
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+  /*width:702px;*/
+  border: 1px solid #d0d1d5;
+  border-radius:3px;
+  margin: auto;
+  margin-bottom:10px;
+  padding: 12px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, .30); /* Not original, just a test */
+}
+.social-content{
+  background-color: rebeccapurple;
+}
+.header {
+  /* background-image: url("https://cdn.wallpapersafari.com/89/46/oGOhiA.jpg"); */
+  flex: .2;
+  margin-bottom: 2%;
+  background-color: whitesmoke; 
+}
+
+.co-logo {
+  /*display:block;*/
+  float:left;
+  margin-right:8px;
+  width:auto !important;
+  height:40px;
+}
+
+.co-name > a {
+  font-family: Helvetica;
+  font-size:14px;
+  font-weight: bold;
+  line-height: 1.38;
+  color: #365899;
+  text-decoration:none;
+  margin-bottom:2px;
+}
+
+.co-name > a:hover {
+  text-decoration:underline;
+}
+
+.time {
+  font-family: Helvetica;
+  font-size:12px;
+  color: #90949c;
+}
+
+.time > a {
+  color: #90949c;
+  text-decoration:none;
+}
+
+
+.time > a:hover {
+  text-decoration:underline;
+}
+
+.content {
+  clear:both;
+  font-family: Helvetica, sans-serif;
+  background-color: lightblue;
+  font-size:14px;
+  line-height: 1.38;
+}
+.reference {
+   flex: .7;
+    /* flex-direction: column; */
+  height: auto;
+  width: 70rem;
+  /*background-color: transparent;*/
+  /*width:476px;*/
+}
+.reference-thumb {
+  height: inherit;
+  width: 100% !important;
+  /*background-color: aliceblue;*/
+  /*display:block;*/
+  /*width:676px;*/
+  /*height:400px;*/
+}
+.reference-content {
+  /* background-image: url("https://image.freepik.com/free-vector/blue-violet-watercolor-abstract-texture-background_259910-8.jpg"); */
+      flex: .2;
+  background-color: whitesmoke;
+  border: 2px solid black;
+  border: 2px solid rgba(0, 0, 0, .1);
+  border-top: 0;
+  font-size: large;
+  padding: 10px 12px 10px 12px;
+  /*width:676px;*/
+}
+
+.reference:hover .reference-content {
+  border-color: black; /* Fallback */
+  border-color: rgba(0, 0, 0, .15);
+}
+.reference-title {
+  background-color: transparent;
+  font-family: Georgia;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  margin-bottom:5px;
+}
+
+.reference-subtitle {
+  font-family: Helvetica;
+  font-size:12px;
+  line-height: 16px;
+}
+.reference-font {
+  color: #90949c;
+  font-family: Helvetica;
+  font-size: 11px;
+  line-height: 11px;
+  text-transform: uppercase;
+  padding-top:9px;
+}
+
+.social {
+  margin-top:12px;
+}
+.social-buttons {
+  color: #7f7f7f;
+  font-family: Helvetica;
+  font-size: 12px;
+  font-weight:bold;
+  line-height:14px;
+  border-top:1px solid #e5e5e5;
+  padding-top:4px;
+
+}
+
+.social-buttons span {
+  font-size: 12px;
+  margin-right:20px;
+  padding:4px 4px 4px 0;
+}
+.social-buttons span:hover {
+  text-decoration:underline;
+  cursor:pointer;
+}
+.social-buttons span i {
+  padding-right:4px;
+}
+
+.form-cont {
+  margin-top: 10rem;
+}
+.rounded {
+  border-radius: 1rem
+}
+
+.nav-pills .nav-link {
+  color: #555
+}
+
+.nav-pills .nav-link.active {
+  color: white
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+/* css for paymentshistory*/
+/* .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6{
+  color: white;} */
