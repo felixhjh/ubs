@@ -724,12 +724,13 @@ def create_club():
         description = form.description.data
         club = db.clubs.find_one({"name": club_name})
         user_clubs = db.userData_db.find_one({"EmailID": session["EmailID"]})["Clubs"]
+        temp = "USERNAME: " + session["FirstName"] + " EMAIL: " + session["EmailID"]
         if club is None:
             db.clubs.insert_one(
                 {
                     "name": club_name,
                     "users": [session["EmailID"]],
-                    "users_name": [session["FirstName"]],
+                    "users_name": [temp],
                     "description": description,
                 }
             )
@@ -773,8 +774,9 @@ def join_club():
         users.append(session["EmailID"])
         db.clubs.update_one({"name": club_name}, {"$set": {"users": users}})
 
+        temp = "USERNAME: " + session["FirstName"] + " EMAIL: " + session["EmailID"]
         users_name = db.clubs.find_one({"name": club_name})["users_name"]
-        users_name.append(session["FirstName"])
+        users_name.append(temp)
         db.clubs.update_one({"name": club_name}, {"$set": {"users_name": users_name}})
 
         user_clubs = db.userData_db.find_one({"EmailID": session["EmailID"]})["Clubs"]
@@ -809,12 +811,16 @@ def leave_club():
     if request.method == "POST":
         club_name = request.get_json(force=True)["club_name"]
         users = db.clubs.find_one({"name": club_name})["users"]
+        users_name = db.clubs.find_one({"name": club_name})["users_name"]
+        temp = "USERNAME: " + session["FirstName"] + " EMAIL: " + session["EmailID"]
+        users_name.remove(temp)
         users.remove(session["EmailID"])
         if len(users) == 0:
             db.clubs.delete_one({"name": club_name})
             msg = "Left and the club is deleted due to zero users"
         else:
             db.clubs.update_one({"name": club_name}, {"$set": {"users": users}})
+            db.clubs.update_one({"name": club_name}, {"$set": {"users_name": users_name}})
             msg = "Left the club successfully"
 
         user_clubs = db.userData_db.find_one({"EmailID": session["EmailID"]})["Clubs"]

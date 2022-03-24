@@ -110,9 +110,7 @@
                                 <h1 class="fs-title">{{club['name']}}</h1>
                                 <p class="card-text">{{club['description']}}</p>
 				{% for users_name in club['users_name'] %}
-				{% for user in club['users'] %}
-				    <p class="card-body">"email":{{user}}, "username":{{users_name}}</p>
-                                {% endfor%}
+				    <p class="card-body">{{users_name}}</p>
                                 {% endfor%}
                             </div>
 
