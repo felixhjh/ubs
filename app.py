@@ -729,6 +729,7 @@ def create_club():
                 {
                     "name": club_name,
                     "users": [session["EmailID"]],
+                    "users_name": [session["FirstName"]],
                     "description": description,
                 }
             )
@@ -771,6 +772,10 @@ def join_club():
         users = db.clubs.find_one({"name": club_name})["users"]
         users.append(session["EmailID"])
         db.clubs.update_one({"name": club_name}, {"$set": {"users": users}})
+
+        users_name = db.clubs.find_one({"name": club_name})["users_name"]
+        users_name.append(session["FirstName"])
+        db.clubs.update_one({"name": club_name}, {"$set": {"users_name": users_name}})
 
         user_clubs = db.userData_db.find_one({"EmailID": session["EmailID"]})["Clubs"]
         user_clubs.append(club_name)
@@ -978,4 +983,4 @@ def page_not_found(error):
 port = int(os.getenv("PORT", "3000"))
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=3000, debug=True)
+    app.run(host="0.0.0.0", port=4000, debug=True)
