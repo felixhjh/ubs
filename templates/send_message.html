@@ -49,6 +49,18 @@
         {{ wtf.form_field(form.submit, class='submit action-button') }}
       </fieldset>
     </form>
+    <div class="col-md-6 col-md-offset-3">
+      <form>
+        <fieldset>
+          <h1 style="color:black ; font-size:35px">User List</h1>
+          {% for email in emails %}
+            <li style="color:black ; font-size:15px">{{ email }}</li>
+          {% endfor%}
+          
+        </fieldset>
+      </form>
+    </div>
+
   </div>
 </div>
 

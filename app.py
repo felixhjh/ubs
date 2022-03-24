@@ -331,6 +331,13 @@ def createPost():
 
 @app.route("/sendMessage", methods=["GET", "POST"])
 def sendMessage():
+
+    emails = []
+    db_col = db["userData_db"]
+    for x in db_col.find():
+        emails.append(x["EmailID"])
+        print(x["EmailID"])
+
     if "EmailID" not in session:
         print("Redirect")
         return redirect("/login")
@@ -359,7 +366,7 @@ def sendMessage():
         else:
             msg = "invalid inputs"
 
-    return render_template("send_message.html", form=form, msg=msg, SearchForm=SearchForm)
+    return render_template("send_message.html", form=form, msg=msg, SearchForm=SearchForm, emails=emails)
 
 @app.route("/messages", methods=["GET"])
 def messages():
