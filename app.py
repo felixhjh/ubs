@@ -118,8 +118,8 @@ class createSalesForm(FlaskForm):
     Image = FileField(
         validators=[FileAllowed(photos, "Image only!"), FileRequired("File was empty!")]
     )
-    price = DecimalField("Enter the price for this item", places=2)
-    itemName = StringField("Enter the name of the item")
+    price = DecimalField("Enter how many you have", places=2)
+    itemName = StringField("Enter your own Email")
     submit = SubmitField("Create")
 
 
@@ -572,6 +572,7 @@ def createExchanges():
             )
             itemName = form.itemName.data
             price = form.price.data
+            # price = 10.0
             salesData = {
                 "Title": form.Title.data,
                 "Description": form.Description.data,
@@ -581,11 +582,12 @@ def createExchanges():
                 "postedBy": session["EmailID"],
                 "itemName": itemName,
                 "price": Decimal128(price),
+                # "price": price,
             }
             db.sales.insert_one(salesData).inserted_id
-            msg = "Create Sales Succesful"
+            msg = "Create Exchange Succesful"
             return render_template(
-                "createSales.html",
+                "createExchanges.html",
                 msg=msg,
                 form=form,
                 SearchForm=SearchForm,
