@@ -552,6 +552,52 @@ def createSales():
     )
 
 
+@app.route("/createExchanges", methods=["GET", "POST"])
+def createExchanges():
+    if "EmailID" not in session:
+        print("Redirect")
+        return redirect("/login")
+    msg = ""
+
+    form = createSalesForm()
+    SearchForm = searchbar()
+
+    if request.method == "POST":
+        if form.validate_on_submit():
+            searchString = SearchForm.search.data
+            file_id = fs.put(
+                form.Image.data,
+                content_type=form.Image.data.content_type,
+                filename=form.Image.data.filename,
+            )
+            itemName = form.itemName.data
+            price = form.price.data
+            salesData = {
+                "Title": form.Title.data,
+                "Description": form.Description.data,
+                "Image": file_id,
+                "Type": "Sales",
+                "TimeStamp": time.time(),
+                "postedBy": session["EmailID"],
+                "itemName": itemName,
+                "price": Decimal128(price),
+            }
+            db.sales.insert_one(salesData).inserted_id
+            msg = "Create Sales Succesful"
+            return render_template(
+                "createSales.html",
+                msg=msg,
+                form=form,
+                SearchForm=SearchForm,
+                searchString=searchString,
+            )
+        else:
+            msg = "invalid inputs"
+
+    return render_template(
+        "createExchanges.html", form=form, msg=msg, SearchForm=SearchForm
+    )
+
 @app.route("/viewPaymentForm", methods=["GET", "POST"])
 def viewPaymentForm():
     if "EmailID" not in session:
@@ -711,6 +757,78 @@ def viewSales():
         counter += 1
     return render_template("viewSales.html", searchbarform=searchbarform, cards=cards)
 
+
+@app.route("/viewExchanges", methods=["GET", "POST"])
+def viewExchanges():
+    total=0
+    documents=[]
+    if "EmailID" not in session:
+        print("Redirect")
+        return redirect("/login")
+    searchbarform = searchbar()
+
+    if searchbarform.validate_on_submit():
+        searchString = searchbarform.search.data
+        print("Search String is ",searchString)
+        cards = []
+        for sstring in searchString.split():
+            total = total + db.sales.count_documents({
+                "$or":[
+                    {"itemName":{"$regex":".*"+sstring+".*", "$options":"i"}},
+                    {"Description":{"$regex":".*"+sstring+".*", "$options":"i"}}
+                    ]
+                })
+            print("Filtered Documents are ", total)
+            documents = documents + list(db.sales.find({
+                "$or":[
+                    {"itemName":{"$regex":".*"+sstring+".*", "$options":"i"}},
+                    {"Description":{"$regex":".*"+sstring+".*", "$options":"i"}}
+                    ]
+                })) 
+        counter = 1
+        card = []
+        for doc in documents:
+            newEntry = {}
+            newEntry["title"] = doc["Title"]
+            newEntry['imgId'] = doc['Image']
+            newEntry["body"] = doc["Description"]
+            newEntry["ID"] = doc["_id"]
+            newEntry["price"] = doc["price"]
+            newEntry["itemName"] = doc["itemName"]
+            card.append(newEntry)
+            if (counter % 3 == 0) or (counter == total):
+                cards.append(card)
+                card = []
+            counter += 1
+        return render_template(
+            "viewExchanges.html", searchbarform=searchbarform, searchString=searchString, cards=cards
+        )
+    cards = []
+    total = db.sales.count_documents({})
+    print("Total Document", total)
+    documents = db.sales.find({})
+    counter = 1
+    card = []
+    for doc in documents:
+        newEntry = {}
+        newEntry["title"] = doc["Title"]
+        # image = fs.get(doc["Image"])
+        # print("View Sales Image ID:", doc["Image"], image.content_type)
+        # base64_data = codecs.encode(image.read(), "base64")
+        # image = base64_data.decode("utf-8")
+        # newEntry["image"] = image
+        newEntry['imgId'] = doc['Image']
+        newEntry["body"] = doc["Description"]
+        newEntry["ID"] = doc["_id"]
+        newEntry["price"] = doc["price"]
+        newEntry["itemName"] = doc["itemName"]
+
+        card.append(newEntry)
+        if (counter % 3 == 0) or (counter == total):
+            cards.append(card)
+            card = []
+        counter += 1
+    return render_template("viewExchanges.html", searchbarform=searchbarform, cards=cards)
 
 @app.route("/create_club", methods=["POST"])
 def create_club():
