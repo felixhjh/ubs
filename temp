@@ -29,7 +29,6 @@ RUN apt-get update \
 COPY python/dist/*.whl /opt/fastdeploy/
 RUN python3 -m pip install  /opt/fastdeploy/*.whl \
     && rm -rf /opt/fastdeploy/*.whl
-
 RUN python3 -m pip install paddlepaddle-gpu==2.4.1
 
 COPY serving/build/libtriton_fastdeploy.so /opt/tritonserver/backends/fastdeploy/
