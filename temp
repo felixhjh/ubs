@@ -11,8 +11,6 @@ COPY serving/TensorRT-8.5.2.2 /opt/TensorRT-8.5.2.2
 ENV TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive \
     DCGM_VERSION=2.2.9 \
-    http_proxy=$http_proxy \
-    https_proxy=$http_proxy
 
 RUN apt-get update \
     && apt-key del 7fa2af80 \
